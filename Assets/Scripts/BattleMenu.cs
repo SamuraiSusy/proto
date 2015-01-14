@@ -11,6 +11,8 @@ public class BattleMenu : MonoBehaviour
 
     bool menuOpen, attackMenuOpen, itemMenuOpen, allyMenuOpen;
 
+    string mainText, menuText, attackMenuText;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -30,6 +32,9 @@ public class BattleMenu : MonoBehaviour
         itemMenuOpen = false;
         allyMenuOpen = false;
 
+        mainText =  menuText = "Menu";
+        attackMenuText = "Press backspace to go back";
+
 	}
 	
 	// Update is called once per frame
@@ -40,13 +45,15 @@ public class BattleMenu : MonoBehaviour
 
     void OnGUI()
     {
-        GUI.Box(new Rect(menuLeft, menuTop, Screen.width / 2, Screen.height / 3), "test");
+        GUI.Box(new Rect(menuLeft, menuTop, Screen.width / 2, Screen.height / 3), mainText);
         if (menuOpen == true)
         {
             DrawMenu();
         }
         else if (attackMenuOpen == true)
         {
+            mainText = attackMenuText;
+            //GUI.Box(new Rect(menuLeft, menuTop, Screen.width / 2, Screen.height / 3), mainText);
             DrawAttackMenu();
         }
         else
@@ -93,6 +100,12 @@ public class BattleMenu : MonoBehaviour
         else if (GUI.Button(new Rect(buttonX + 80, buttonY + 80, buttonWidth, buttonHeight), "Attack4"))
         {
             Debug.Log("attack 4");
+        }
+
+        if (Input.GetKey(KeyCode.Backspace))
+        {
+            attackMenuOpen = false;
+            menuOpen = true;
         }
     }
 
