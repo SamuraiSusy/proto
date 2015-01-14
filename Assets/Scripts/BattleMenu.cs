@@ -3,6 +3,8 @@ using System.Collections;
 
 public class BattleMenu : MonoBehaviour
 {
+    public Camera cam1, cam2, cam3;
+
     float menuCenterX, menuCenterY;
     float menuLeft, menuTop;
 
@@ -16,6 +18,10 @@ public class BattleMenu : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        cam1.enabled = true;
+        cam2.enabled = false;
+        cam3.enabled = false;
+
         menuCenterX = Screen.width / 2;
         menuCenterY = Screen.height / 2;
 
@@ -39,9 +45,7 @@ public class BattleMenu : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update ()
-    {
-	
-	}
+    {}
 
     void OnGUI()
     {
@@ -71,7 +75,7 @@ public class BattleMenu : MonoBehaviour
         }
         else if (GUI.Button(new Rect(buttonX + 80, buttonY, buttonWidth, buttonHeight), "Change"))
         {
-            Debug.Log("change ur lovely monstaa");
+            DrawMonsterMenu();
         }
         else if (GUI.Button(new Rect(buttonX, buttonY + 80, buttonWidth, buttonHeight), "Items"))
         {
@@ -110,10 +114,20 @@ public class BattleMenu : MonoBehaviour
     }
 
     void DrawItemMenu()
-    { }
+    {
+        //cam1.enabled = !cam2.enabled;
+        cam2.enabled = !cam3.enabled;
+        cam3.enabled = !cam1.enabled;
+    }
 
+    // don't quite get it but it changes the cameras wrong way
+    // still usable, only little, fixable bug
     void DrawMonsterMenu()
-    { }
+    {
+        cam1.enabled = !cam1.enabled;
+        //cam2.enabled = !cam2.enabled;
+        cam3.enabled = !cam3.enabled;
+    }
 
     void Attack()
     {
