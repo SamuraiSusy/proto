@@ -35,11 +35,10 @@ public class BattleMenu : MonoBehaviour
 
         menuOpen = true;
         attackMenuOpen = false;
-        itemMenuOpen = false;
-        allyMenuOpen = false;
 
-        mainText =  menuText = "Menu";
+        menuText = "Menu";
         attackMenuText = "Press backspace to go back";
+        mainText = menuText;
 
 	}
 	
@@ -52,6 +51,7 @@ public class BattleMenu : MonoBehaviour
         GUI.Box(new Rect(menuLeft, menuTop, Screen.width / 2, Screen.height / 3), mainText);
         if (menuOpen == true)
         {
+            mainText = menuText;
             DrawMenu();
         }
         else if (attackMenuOpen == true)
@@ -79,7 +79,7 @@ public class BattleMenu : MonoBehaviour
         }
         else if (GUI.Button(new Rect(buttonX, buttonY + 80, buttonWidth, buttonHeight), "Items"))
         {
-            UseItem();
+            DrawItemMenu();
         }
         else if (GUI.Button(new Rect(buttonX + 80, buttonY + 80, buttonWidth, buttonHeight), "Run"))
         {
@@ -115,14 +115,20 @@ public class BattleMenu : MonoBehaviour
 
     void DrawItemMenu()
     {
-        //cam1.enabled = false;
-        //cam2.enabled = true;
-        //cam3.enabled = false;
-        //Debug.Log("drawmenuitem");
+        if (cam1.enabled == true)
+        {
+            cam1.enabled = false;
+            cam2.enabled = true;
+        }
+        else if (cam2.enabled == true)
+        {
+            cam1.enabled = true;
+            cam2.enabled = false;
+        }
     }
 
     // don't quite get it but it changes the cameras wrong way
-    // still usable, only little, fixable bug
+    // still usable; only little, fixable bug
     void DrawMonsterMenu()
     {
         if (cam1.enabled == true)
@@ -131,7 +137,7 @@ public class BattleMenu : MonoBehaviour
             cam2.enabled = false;
             cam3.enabled = true;
         }
-        else if (cam3.enabled == true && cam1.enabled == false)
+        else if (cam3.enabled == true)
         {
             cam1.enabled = true;
             cam3.enabled = false;
