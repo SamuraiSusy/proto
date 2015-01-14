@@ -21,7 +21,7 @@ public class BattleAI : MonoBehaviour
         enemyName.color = Color.black;
 
         enemyHP.transform.position = new Vector2(0.45f, 0.98f);
-        enemyHP.text = "HP: ";
+        enemyHP.text = "HP: " + enemyHPAmount;
         enemyHP.color = Color.black;
 
         enemyHPAmount = 30;

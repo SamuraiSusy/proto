@@ -15,6 +15,9 @@ public class BattleMenu : MonoBehaviour
 
     string mainText, menuText, attackMenuText;
 
+    public Battle ally;
+    public BattleAI enemy;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -39,6 +42,9 @@ public class BattleMenu : MonoBehaviour
         menuText = "Menu";
         attackMenuText = "Press backspace to go back";
         mainText = menuText;
+        
+        ally = gameObject.GetComponent<Battle>();
+        enemy = gameObject.GetComponent<BattleAI>();
 
 	}
 	
@@ -91,6 +97,7 @@ public class BattleMenu : MonoBehaviour
     {
         if (GUI.Button(new Rect(buttonX, buttonY, buttonWidth, buttonHeight), "Attack1"))
         {
+            enemy.enemyHPAmount -= ally.allyBaseDmg + ally.attack1Dmg;
             Debug.Log("attack 1");
         }
         else if (GUI.Button(new Rect(buttonX + 80, buttonY, buttonWidth, buttonHeight), "Attack2"))

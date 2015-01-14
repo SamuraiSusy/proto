@@ -7,6 +7,8 @@ public class Battle : MonoBehaviour
     public GUIText allyName, allyHP;
 
     public int allyHPAmount;
+    public int allyBaseDmg, attack1Dmg;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -19,7 +21,7 @@ public class Battle : MonoBehaviour
         allyName.color = Color.black;
 
         allyHP.transform.position = new Vector2(0.60f, 0.05f);
-        allyHP.text = "HP: ";
+        allyHP.text = "HP: " + allyHPAmount;
         allyHP.color = Color.black;
 
         allyHPAmount = 50;
